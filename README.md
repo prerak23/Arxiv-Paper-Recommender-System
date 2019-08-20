@@ -7,9 +7,8 @@
 4. Spacy
 5. Tensorflow
 6. Tensorflow_hub
+7. Universal Sentance Encoder
 
-
-,clean_abs_stat.py,tfs_encode.py
 ## Introduction
 This is a research paper recommender system which matches similarity between papers on the basis of semantic similarity of the abstract of the paper 
 
