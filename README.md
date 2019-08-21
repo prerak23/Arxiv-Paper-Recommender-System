@@ -29,9 +29,9 @@ It was a part of my research project during my summer internship at Loria , Nanc
 
 ### Basically there are 5 important files 
 1. **service.py** :-
-This python file contains code that clean and encode your input abstract and compare it with the diffrent already encoded abstracts present in the database and at the end gives you the 10 most similar papers by using **cosine similarity** as a metric to detrimine similarity scores between the papers as of now it using **_brute-force technique_** to give 10 most similar papers but we can obviously make it more faster to run
+This python file contains code that clean and encode your input abstract and compare it with the diffrent already encoded abstracts present in the database and at the end gives you the 10 most similar papers by using **cosine similarity** as a metric to detrimine similarity scores between the papers as of now it is using **_brute-force technique_** to give 10 most similar papers but we can obviously make it more faster to run
 2. **extract_data.py** :- 
-If you want to make your own database of from the scratch then run this python file which will create a **database.csv** file at the end which will contain information these columns of information **id , title , abstract , categories** 
+If you want to make your own database from scratch then run this python file which will create a **database.csv** file at the end of the programe which will contain theses information **id , title , abstract , categories**  
 To change the time period of the data to be extracted you can change on this line in the file as follows
 ```
 ax = Scraper(category=xp, date_from='**yyyy-mm-dd**',date_until='2019-08-01')
@@ -54,7 +54,7 @@ tfs_encode("database_clean.csv",False)
 ```
 4. **update_database.py** :-
 This python file updates the database according to the last updated date on which the file **db_encoded.npy** was updated or created 
-while running this file one more file is created in the meantime named as **updated_data** to store the updated data that is gathered from the oaipmh 
+while running this file one more file is created in the meantime named as **updated_data** to store the updated data that is gathered from the oaipmh requests
 then we clean the abstract in this temprory file and encode it after that we then basically append this new encoded data to the file **db_encoded.npy**
 
 ```
