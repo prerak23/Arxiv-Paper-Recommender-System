@@ -4,13 +4,14 @@
 1. Numpy
 2. Pandas 
 3. Scikit-learn
-4. Spacy
-5. Tensorflow
-6. Tensorflow_hub
+4. Spacy 
+5. Tensorflow By Using This Command (pip3 install --quiet "tensorflow>=1.7")
+6. Tensorflow_hub By Using This Command (pip3 install --quiet tensorflow-hub)
 7. Universal Sentance Encoder
 
 ## Introduction
 This is a research paper recommender system which matches similarity between papers on the basis of semantic similarity of the abstract of the paper 
+It was a part of my research project during my summer internship at Loria , Nancy , France
 
 ## How To Use This Service 
 1. Clone the github repo 
@@ -38,8 +39,8 @@ ax = Scraper(category=xp, date_from='**yyyy-mm-dd**',date_until='2019-08-01')
 ```
 3. **database_clean_and_encode.py** :-
 After running the above mentioned file you have to run this python file which will try to clean up your abstract which is present in the file named as **database.csv**  using the python program named as **clean_abs_stat.py** and will also encode the abstract using python programe named as **tfs_encode.py** during its running it will try to create two files in the mean-time 
-a) **database_clean.csv** (This file is similar to database.csv but the abstract present in this file are cleaned)
-b) **db_encoded.npy**     (This Numpy file is the final result of this program which will consist the encoded version of your abstract)
+**a) database_clean.csv** (This file is similar to database.csv but the abstract present in this file are cleaned)
+**b) db_encoded.npy**     (This Numpy file is the final result of this program which will consist the encoded version of your abstract)
 
 ```
 
@@ -76,10 +77,10 @@ tfs_encode.encode('updated_data.csv',True)
 ```
 5. **clean_abs_stat.py** :-
 This python file is used to clean the abstract in the database file or in the updated basically to clean the abstract I have created a 4 stage pipeline for that which is described as follows
-a) Pipeline 1 :- As abstract of the research papers contains various math symbols so our first stage would be to remove them hence we convert every $ $ to an $ * because as per latex every formula is between two $ $ signs so we convert the other $ to an * so it will become $ * to denote its a math formula
-b) Pipeline 2 :-  Removing the new-line charachters
-c) Pipeline 3 :- Removing the whole math symbols from the abstracts
-d) Pipeline 4 :- Remove the symbols except from the strong punctations marks from the abstract
+**a) Pipeline 1** :- As abstract of the research papers contains various math symbols so our first stage would be to remove them hence we convert every $ $ to an $ * because as per latex every formula is between two $ $ signs so we convert the other $ to an * so it will become $ * to denote its a math formula
+**b) Pipeline 2** :-  Removing the new-line charachters
+**c) Pipeline 3** :- Removing the whole math symbols from the abstracts
+**d) Pipeline 4** :- Remove the symbols except from the strong punctations marks from the abstract
 
 6. **tfs_encode.py**
  This python program encodes the abstract present in the database and at the end create a file called as **db_encoded.npy** 
@@ -110,17 +111,19 @@ I have used silhouette metric because for this task i did not have labels to the
 
 I found out by experimenting with parameters that less the clusters the more silhouette score i was getting which means better the clusters formed by the package
 
-**Why I havent used the labels as categories are already defined with each abstract ?**
-Because the clusters that are formed by spherical k means clustering technique in those clusters as categories are usually mixed for example some computer science paper abstracts have categories like _CS.STAT,CS.PHY_ now these types of paper comes in both cluster so that is why it was difficult to perform evaluation on the cluster formed by spherical k means
+**Why I havent used the labels as categories/sets are already defined with each abstract ?**
+The clusters that are formed by spehrical k means clustering cannot be evaluated because of inavaliabilty of gold dataset for this specific task to compare our results.
+Because we are clustering on the basis of semantic similarity of every abstract the problem arises becuase in a cluster you can have papers which have similar semantic similarity but belongs to an diffirent categories/set alltogether 
+For Example :- Suppose Cluster 0 have 75 % of the paper which belong to the category _cs_ and rest 25% of papers belong to the diffrent sets like _physics or maths_ these 25 % paper are somewhat related or you can say have same semantic similarity as the 75 % of the paper present in the same cluster so , now the question comes what label or how would you define this cluster.
 
-(I also tried to evaluate taking broder sets as my labelled but it did not even work out with that because still paper some papers in CS have some semantic similarity with the papers in STAT or PHYSICS in general hence that paper lies i dont know in which clusters)
-Need to correct this thing out 
+The best thing for evaluation is to go and read each paper and then try define the labels per cluster but that is tedius task on its own 
+if there would be an avaliabilty of gold dataset to compare then the evaluation would be much easier to do 
 
 
 **Important Observations**
-Some papers which belong to same set and also belong to same category sometime have a lot of dissimilarity between them
+1. Some papers which belong to same set and also belong to same category sometime have a lot of dissimilarity between them
 
-That could be the abstract i am dealing with consist less words in general so infersent is unable to extract out the features
+2. Sometimes the abstract contains more formulas then text hence with less words in general it is difficult to extract out the features of that extract
 
 
 
