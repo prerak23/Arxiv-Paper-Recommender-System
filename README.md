@@ -1,4 +1,4 @@
-# Arxiv-Paper-Recommender-System-
+# Arxiv-Paper-Recommender-System
 
 ## These Libraries Should Be Installed Before Running This Service
 1. Numpy
