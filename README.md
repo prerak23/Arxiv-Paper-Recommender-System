@@ -8,6 +8,8 @@
 5. Tensorflow By Using This Command (pip3 install --quiet "tensorflow>=1.7")
 6. Tensorflow_hub By Using This Command (pip3 install --quiet tensorflow-hub)
 7. Universal Sentance Encoder
+8. _Input text should only contain text and should not contain latext formulated formulas for better results_
+9. All the files including the file named as _db_encoded.npy_ should be in the same dir/folders 
 
 ## Introduction
 This is a research paper recommender system which matches similarity between papers on the basis of semantic similarity of the abstract of the paper 
