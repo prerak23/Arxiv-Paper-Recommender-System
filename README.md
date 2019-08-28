@@ -8,7 +8,7 @@
 5. Tensorflow By Using This Command (pip3 install --quiet "tensorflow>=1.7")
 6. Tensorflow_hub By Using This Command (pip3 install --quiet tensorflow-hub)
 7. Universal Sentance Encoder
-8. _Input text should only contain text and should not contain latext formulated formulas for better results_
+8. _Input text should only contain text and should not contain latex formulated formulas for better results_
 9. All the files including the file named as _db_encoded.npy_ should be in the same dir/folders 
 
 ## Introduction
