@@ -8,6 +8,8 @@
 5. Tensorflow By Using This Command (pip3 install --quiet "tensorflow>=1.7")
 6. Tensorflow_hub By Using This Command (pip3 install --quiet tensorflow-hub)
 7. Universal Sentance Encoder
+8. _Input text should only contain text and should not contain latex formulated formulas for better results_
+9. All the files including the file named as _db_encoded.npy_ should be in the same dir/folders 
 
 ## Introduction
 This is a research paper recommender system which matches similarity between papers on the basis of semantic similarity of the abstract of the paper 
@@ -27,9 +29,10 @@ It was a part of my research project during my summer internship at Loria , Nanc
 ## Info what goes on behind the scences
 ### This application works on an already trained sentance encoder model called as Universal Sentance Encoder this model runs on DAN (Deep Averaging Network ) architecture the model is trained using multi-task learning 
 
-### Basically there are 5 important files 
+### Basically there are 7 important files 
 1. **service.py** :-
-This python file contains code that clean and encode your input abstract and compare it with the diffrent already encoded abstracts present in the database and at the end gives you the 10 most similar papers by using **cosine similarity** as a metric to detrimine similarity scores between the papers as of now it is using **_brute-force technique_** to give 10 most similar papers but we can obviously make it more faster to run
+This python file contains code that clean and encode your input abstract and compare it with the diffrent already encoded abstracts present in the database and at the end gives you the 10 most similar papers by using **cosine similarity** as a metric to detrimine similarity scores between the papers the service is quite fast as we have used **a diffrent approach** to compute **cosine similarity** and did some tricks on numpy arrays to make everything super fast and efficient eventhough the database is 1.5 million papers it usually take about **50 seconds** to recomend us the 10 most similar papers. 
+
 2. **extract_data.py** :- 
 If you want to make your own database from scratch then run this python file which will create a **database.csv** file at the end of the programe which will contain theses information **id , title , abstract , categories**  
 To change the time period of the data to be extracted you can change on this line in the file as follows
@@ -86,6 +89,11 @@ This python file is used to clean the abstract in the database file or in the up
  This python program encodes the abstract present in the database and at the end create a file called as **db_encoded.npy** 
  the method in the code excpects two parameters one is _update_ (Boolean) if its an update which is expected to take place or not and a
  file_name which is only needed when there is an update which needs to be done on the pre-defined database
+7. **drop_duplicate.py**
+   This python file is used to drop the duplicates from the numpy database in a fast way during the extraction of data from the oiapmh 
+   request there were a lot of papers which were published twice or thrice because of some reasons on arxiv so when you do an oaipmh 
+   request it usually give duplicate data entries. Hence the task of this python script is to remove those duplicate data entries using
+   _title_ as the subject to find the duplicates in the encoded data file known as _db_encoded.npy_ 
 
 ## Analysis of the encodings produced by universal sentance encoder
 
