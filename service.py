@@ -26,10 +26,9 @@ tit=big_data.ix[:,'title'].tolist()
 #use_cuda=True
 #infersent=infersent.cuda() if use_cuda else infersent
 nlp=spacy.load('en_core_web_sm')
-
-def start():
-    text=input("Enter Abstract :- ")
-    text=re.sub("[^a-zA-Z0-9;:!?.,]"," ",text)
+embed=hub.Module(module_url)
+def start(txts):
+    text=txts
     doc=nlp(text)
     sents_arr=[]
     sents=""
@@ -56,8 +55,6 @@ def start():
 #else:
     #abs_emb_avg=abs_emb.reshape(1,-1)
 
-
-    embed=hub.Module(module_url)
     
     with tf.Session() as session:
         session.run([tf.global_variables_initializer(), tf.tables_initializer()])
@@ -79,13 +76,14 @@ def start():
         all_simi.append(np.vdot(abs_emb.reshape(1,-1),all_emb[z].reshape(1,-1))/(nor[z]*nor_abs))
     print("Time Taken To Find Similarity Of Whole",len(all_emb)," Database ",time.time()-stra)
     sr=np.argsort(all_simi)
-    sr=sr[::-1][:10]
+    sr=sr[::-1][:5]
     for xk in sr:
         top_simi.append((tit[xk],se[xk],cat[xk],all_simi[xk]))
-            
+   
+    return top_simi
 
         
-
+'''
     for x in top_simi:
         print("title:-"+" ",x[0])
         print("Id:-"+" ",x[1])
@@ -98,7 +96,6 @@ def start():
     else:
         print("Thanks For Using this service")
         sys.exit()
-start()
-
+'''
 
 
