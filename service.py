@@ -12,7 +12,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 module_url="https://tfhub.dev/google/universal-sentence-encoder/2"
-big_data=pd.DataFrame(np.load('db_encoded.npy'),columns=['embds','title','catg','id'])
+big_data=pd.DataFrame(np.load('db_encoded.npy',allow_pickle=True),columns=['embds','title','catg','id'])
 all_emb=big_data.ix[:,'embds'].tolist()
 se=big_data.ix[:,'id'].tolist()
 cat=big_data.ix[:,'catg'].tolist()

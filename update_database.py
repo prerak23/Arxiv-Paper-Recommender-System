@@ -8,8 +8,10 @@ import os
 import gc
 import drop_duplicate
 
+'''
 ll_sets=['physics','math','cs','econ','eess','physics:astro-ph','physics:cond-mat','physics:gr-qc','physics:hep-ex','physics:hep-lat','physics:hep-ph','physics:hep-th','physics:math-ph','physics:nlin','physics:nucl-ex','physics:nucl-th','physics:physics','physics:quant-ph','q-bio','q-fin','stat']
-
+'''
+ll_sets=['math']
 date_load=np.load('last_update.npy')
 update_time=date_load[0][0]
 print(str(update_time))
@@ -36,12 +38,13 @@ clean_abs_stat.clean_abs(dir_path+os_specific+'updated_data.csv').to_csv('update
 
 nps=tfs_encode.encode('updated_data.csv',True)
 print("New Data Encoded",nps.shape)
-kp=np.load(dir_path+os_specific+'db_encoded.npy')
+kp=np.load('db_encoded.npy',allow_pickle=True)
+print(kp.shape)
 kp=np.concatenate([kp,nps],axis=0)
 print("Encoded Data Added With The Main Database",kp.shape)
 np.save('db_encoded',kp)
 print("More Cleaning Of The Data")
-drop_duplicate.dupli(dir_path+os_specific+"db_encoded.npy")
+drop_duplicate.dupli("db_encoded.npy")
 print("Database Updated Succesfully")
 date_load[0][0]=str(datetime.date.today())
 np.save("last_update.npy",date_load)
