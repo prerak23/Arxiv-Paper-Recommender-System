@@ -6,7 +6,7 @@ import re
 import urllib2 as libreq
 import service
 import time
-mastadon=Mastodon(access_token='f94b597f3eea79ce8607870d31f1cfffff59c7d92066f92ec2d33b12872692a0',api_base_url='https://olkichat.duckdns.org')
+mastadon=Mastodon(access_token='your_id',api_base_url='your_url')
 
 def sta():
     kc=mastadon.notifications()
